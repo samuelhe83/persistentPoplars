@@ -1,0 +1,111 @@
+---- USERS ----
+- Sign up
+  - Captcha
+  - Require specific email domain
+  - 2 step authentication
+  - Limit requests by IP
+  TO CONSIDER:
+    - black list IP
+    - Paystubs
+
+---- DASHBOARD ----
+- List of Proposal
+  - Stages of Proposal
+    - Pending company response
+    - Make company demand (pending response)
+    - Exploratory (throw out an idea)
+  - The Proposal (block of text)
+  - Scope of the proposal
+    - Specific location
+    - Specific region
+    - Specific department
+  - Living evolving proposal 
+    - Offer an edit - > Vote
+  - Proposal Control
+    - Complete Democracy
+      - Majority Rules
+      - Owner/Owner Group has Veto power
+  - Discussion board
+- Sort/Filter proposals by:
+  - Momentum (our measure) - viral
+    - Thumbnail images (catchphrases - super hot, moving quick)
+  - Stage of Proposal
+  - Scope of Proposal
+  - Date
+
+- Traction Mechanism
+  - Together we Stand, Divided we fall -Credit
+  - Urge users to get behind something
+    - Discussion between proposal owners -> merge proposals
+
+- Proposal Time Limit
+  - 2 weeks 
+  - 15% needed support
+
+
+
+- Private proposals/groups/discussions
+
+---- TECH STACK ----
+- MySql
+- Express
+- Passport
+
+- React
+- Bootsrap CSS
+
+--- NEED ----
+1. Databse of users
+2.
+
+
+Users - proposals
+==================
+Users can:
+- Watch a proposal
+- Sign on to proposal
+- Join a group (scope -> location, department, region)
+
+Proposal
+========
+- Title
+- Description
+- Admin User(s)
+- Public / Private
+- Stage of the Proposal
+  - Viability
+  - Exploratory/Collaboartion
+  - Make Company Engagement
+  - Post Company Engagement
+
+
+User's Standpoint
+=================
+1. Authentication
+  - Sign up (V)
+  - Sign In (V)
+1. DASHBOARD (V)
+  - Table of proposals
+
+2. Proposal Detail View (V)
+  - Title
+  - Proposal Scope (dept, store, region)
+  - Proposal Stage (Meter or Graphic)
+  - XX Supporters, XX Watching
+  - Description
+  - Admin User
+  - Discussion Board
+
+  - COMPANY ENGAGEMENT (Admin Drafts) -> VOTE -> Email
+    - Admin can outline requests or upload letter with demands/consequences
+    - User's vote on moving forward with company engagement
+
+  - Optionally: Propose an edit -> Vote
+
+
+
+
+
+
+
+
