@@ -50,9 +50,11 @@ module.exports = function(passport) {
           return done(null, false, { message: 'Username not available.' });
         } else {
         //create username and password in database
-          
-
-
+          db.User.create({
+            username: username,
+            password: password,
+            email: email
+          })
         }
       });
     })
