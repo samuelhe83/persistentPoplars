@@ -50,7 +50,6 @@ passport.use('local-signup', new LocalStrategy({
       //create username and password in database
 
 
-
       }
     });
   }

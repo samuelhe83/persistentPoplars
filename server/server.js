@@ -29,7 +29,6 @@ app.use(bodyParser.json());
 
 
 
-
 // Commenting out Passport to work on DB:
 // app.use(passport.initialize());
 // app.use(passport.session());
