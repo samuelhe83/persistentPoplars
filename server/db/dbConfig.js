@@ -1,6 +1,8 @@
 //a model is a table in sequelize
 //sequelize automatically creates id field as primary key
 var Sequelize = require('sequelize');
+var bcrypt = require('bcryptjs');
+var Promise = require('bluebird');
 var sequelize = new Sequelize('persistentPoplar', 'root', ''); 
 
 //Company table
@@ -10,11 +12,30 @@ var Company = sequelize.define('company', {
 
 //Users table
 var User = sequelize.define('user', {
-  username: Sequelize.STRING,
+  username: {
+    type: Sequelize.STRING,
+    unique: true
+  },
   password: Sequelize.STRING
 }, {
   timestamps: true
 })
+
+User.beforeCreate(function(user, options){
+  var hash = Promise.promisify(bcrypt.hash);
+  return hash(user.password, 10)
+  .then(function(hashedPW) {
+    user.password = hashedPW;
+  })
+  .catch(function(err) {
+  })
+});
+
+/*
+User.beforeUpdate(function(userData, options){
+  return hashPassword(userData, options);
+});
+*/
 
 User.belongsTo(Company, {foreignKey: 'companyId'});
 Company.hasMany(User, {foreignKey: 'companyId'});
