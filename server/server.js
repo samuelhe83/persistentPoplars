@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var passport = require('passport');
 var session = require('express-session');
+
 app.use(session({
   secret: 'secretkeyforthepoplartree',
   resave: false,
@@ -40,6 +41,13 @@ app.use(express.static(__dirname + '/../client'));
 
 
 var db = require('./db/dbConfig');
+
+
+// Error handling
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Oops! Something broke on our end. Please refresh');
+});
 
 
 app.listen(4568);
