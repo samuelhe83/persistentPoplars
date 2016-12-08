@@ -6,7 +6,7 @@ module.exports = function(app, express, passport) {
     failureFlash: true })
   );
 
-  app.post('signup', passport.authenticate('local-signin', {
+  app.post('/signup', passport.authenticate('local-signin', {
     successRedirect: '/', 
     failureRedirect: '/login', 
     failureFlash: true })
