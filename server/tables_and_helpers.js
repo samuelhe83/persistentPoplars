@@ -12,7 +12,7 @@ var Users = sequelize.define('user', {
   password: Sequelize.STRING
 })
 
-Users.belongsTo(Company)
+Users.hasOne(Company, {foreign_key: 'company_id'});
 
 
 var Proposal = sequelize.define('proposal', {
@@ -22,5 +22,6 @@ var Proposal = sequelize.define('proposal', {
   timestamps: true
 })
 
-Proposal.belongsTo(Company);
-Proposal.belongsTo(Users); //rename it so this category is called admin user
+Proposal.hasOne(Company, {foreign_key: 'company_id'});
+Proposal.hasOne(Users, {foreign_key: 'admin'}); 
+
