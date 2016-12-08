@@ -16,30 +16,17 @@ app.use(session({
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-// DOES PASSPORT SPECIFICALLY REQUIRE THE COOKIE PARSER?
-// I don't think we need it:
-// "Note Since version 1.5.0, the cookie-parser middleware no longer needs to be used for this module to work." https://github.com/expressjs/session
-// See also: http://stackoverflow.com/questions/29122638/usage-of-cookie-parser-with-passport-js-still-needed
-  // var cookieParser = require('cookie-parser');
-  // app.use(cookieParser());
 
-// EXPRESS DOT THE FOLLOWING IS DEPRECATED, DO WE NEED THIS?
-  // app.use(express.cookieParser());
-  // app.use(express.session({ secret: 'secretkeyforthepoplartree' }));
-
-
-
-
-// Commenting out Passport to work on DB:
-// app.use(passport.initialize());
-// app.use(passport.session());
-
-// require('./app/routes.js')(app, express, passport);
-// require('./config/passport.js');
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.static(__dirname + '/../client'));
 
+require('./config/passport.js')(passport);
+require('./app/routes.js')(app, express, passport);
 
+
+//Does this do anything?
 var db = require('./db/dbConfig');
 
 
