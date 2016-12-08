@@ -13,11 +13,11 @@ var ProposalListEntry = (props) => {
 
   return (
    <tr>
-     <th>{{props.title}}</th>
-     <th>{{props.stage}}</th>
-     <th>{{timeType(props.stage, props.date)}}</th>
-     <th>{{props.supporters + '/' + props.watchers}}</th>
-     <th><img src="somePicture"></th>
+     <th>{props.title}</th>
+     <th>{props.stage}</th>
+     <th>{timeType(props.stage, props.date)}</th>
+     <th>{props.supporters + '/' + props.watchers}</th>
+     <th><img src="somePicture" /></th>
    </tr>
   );
 };

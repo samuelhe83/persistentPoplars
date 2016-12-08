@@ -5,7 +5,7 @@
         <a class="navbar-brand">Home</a>
         <a class="navbar-brand">Proposals</a>
         <a class="navbar-brand">About</a>
-        <input placeholder="Search Proposals">
+        <input placeholder="Search Proposals" />
       </div>
     </nav>
   );

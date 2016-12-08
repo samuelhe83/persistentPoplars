@@ -15,9 +15,9 @@ class ProposalList extends React.Components {
           <th>Momentum</th>
         </thead>
         <tbody>
-          {{props.proposals.map(proposal => {
-            <ProposalListEntry date={{proposal.date}} stage={{proposal.stage}} supporters={{proposal.supporters}} watchers={{proposal.watchers}}>
-          })}}
+          {props.proposals.map(proposal => {
+            <ProposalListEntry date={proposal.date} stage={proposal.stage} supporters={proposal.supporters} watchers={proposal.watchers} />
+          })}
         </tbody>
       </table>
     );
