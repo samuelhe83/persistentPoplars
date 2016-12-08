@@ -16,8 +16,8 @@ var User = sequelize.define('user', {
   timestamps: true
 })
 
-User.belongsTo(Company, {foreignKey: company_id});
-Company.hasMany(User, {foreignKey: company_id});
+User.belongsTo(Company, {foreignKey: 'companyId'});
+Company.hasMany(User, {foreignKey: 'companyId'});
 
 //Proposal table
 var Proposal = sequelize.define('proposal', {
