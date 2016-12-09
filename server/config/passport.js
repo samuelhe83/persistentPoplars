@@ -1,5 +1,6 @@
 var LocalStrategy = require('passport-local').Strategy;
 var db = require('../db/dbConfig.js');
+var fs = require('fs');
 
 
 module.exports = function(passport) {
@@ -49,14 +50,33 @@ module.exports = function(passport) {
         if (user) {
           return done(null, false, { message: 'Username not available.' });
         } else {
-        //create username and password in database
+          var randomName = '';
+          fs.readFile('../1syllableadjectives.txt', (err, data) => {
+            randomName += data[Math.random() * data.length];
+            fs.readFile('../1syllablenouns', (err, data) => {
+              randomName += data[Math.random() * data.length];
+            });
+          });
           db.User.create({
-            username: username,
+            username: randomName,
             password: password,
             email: email
-          })
+          });
         }
       });
     })
-  );
+  )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
