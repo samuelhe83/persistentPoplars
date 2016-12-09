@@ -3,7 +3,7 @@
 var Sequelize = require('sequelize');
 var bcrypt = require('bcryptjs');
 var Promise = require('bluebird');
-var sequelize = new Sequelize('persistentPoplar', 'root', ''); 
+var sequelize = new Sequelize('persistentPoplar', 'root', '');
 
 //Company table
 var Company = sequelize.define('company', {
@@ -19,16 +19,16 @@ var User = sequelize.define('user', {
   password: Sequelize.STRING
 }, {
   timestamps: true
-})
+});
 
-User.beforeCreate(function(user, options){
+User.beforeCreate(function(user, options) {
   var hash = Promise.promisify(bcrypt.hash);
   return hash(user.password, 10)
   .then(function(hashedPW) {
     user.password = hashedPW;
   })
   .catch(function(err) {
-  })
+  });
 });
 
 /*
@@ -47,7 +47,7 @@ var Proposal = sequelize.define('proposal', {
   stage: Sequelize.INTEGER //make it so it can only be 0-3
 }, {
   timestamps: true
-})
+});
 
 Proposal.belongsTo(Company, {foreign_key: 'companyId'});
 Company.hasMany(Proposal, {foreign_key: 'companyId'});

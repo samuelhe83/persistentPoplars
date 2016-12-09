@@ -1,12 +1,20 @@
- var NavBar = (props) => {
+ var Navbar = (props) => {
   return (
-    <nav class="navbar navbar-default">
-      <div class="navbar-header">
-        <a class="navbar-brand">Home</a>
-        <a class="navbar-brand">Proposals</a>
-        <a class="navbar-brand">About</a>
-        <input placeholder="Search Proposals" />
+    <nav className="navbar navbar-default">
+      <div className="navbar-header">
+        <a href="#" className="navbar-brand">Home</a>
+        <a href="#" className="navbar-brand">Proposals</a>
+        <a href="#" className="navbar-brand">About</a>
+        <div className="input-group" id="search">
+          <input type="text" className="form-control" placeholder="Search" name="q"/>
+          <div className="input-group-btn">
+              <button className="btn btn-default" type="submit">
+              <i className="glyphicon glyphicon-search"></i>
+              </button>
+          </div>
+        </div>
       </div>
     </nav>
+
   );
  }
