@@ -20,7 +20,7 @@ module.exports = function(app, express, passport) {
       res.send(proposals);
     })
   });
-
+/*
   app.get('/proposals/:id', function(req, res) {
     var id = req.params.id;
     db.Proposal.findOne({ 
@@ -29,8 +29,8 @@ module.exports = function(app, express, passport) {
         }
       })
   });
-/*
+*/
   app.post('/proposal', function(req, res){
     db.Proposal.create(req.body);
-  })*/
+  })
 }
