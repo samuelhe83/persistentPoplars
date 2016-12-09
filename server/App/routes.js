@@ -11,4 +11,26 @@ module.exports = function(app, express, passport) {
     failureRedirect: '/signup', 
     failureFlash: true })
   );
+
+
+
+  app.get('/proposals', function(req, res) {
+    db.Proposal.findAll().then(function(proposals){
+      console.log('proposals are: ', proposals);
+      res.send(proposals);
+    })
+  });
+
+  app.get('/proposals/:id', function(req, res) {
+    var id = req.params.id;
+    db.Proposal.findOne({ 
+        where: {
+          id: id
+        }
+      })
+  });
+/*
+  app.post('/proposal', function(req, res){
+    db.Proposal.create(req.body);
+  })*/
 }

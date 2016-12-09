@@ -48,7 +48,9 @@ Company.hasMany(User, {foreignKey: 'companyId'});
 var Proposal = sequelize.define('proposal', {
   title: Sequelize.STRING,
   description: Sequelize.TEXT,
-  stage: Sequelize.INTEGER //make it so it can only be 0-3
+  stage: Sequelize.INTEGER, //make it so it can only be 0-3
+  watch: Sequelize.INTEGER,
+  support: Sequelize.INTEGER
 }, {
   timestamps: true
 })
@@ -69,7 +71,7 @@ var Proposal_User = sequelize.define('Proposal_User', {
 Proposal.belongsToMany(User, {through: Proposal_User});
 User.belongsToMany(Proposal, {through: Proposal_User});
 
-sequelize.sync();
+sequelize.sync({});
 
 module.exports = {
   sequelize: sequelize,

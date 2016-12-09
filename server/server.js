@@ -30,6 +30,20 @@ require('./app/routes.js')(app, express, passport);
 //Does this do anything?
 var db = require('./db/dbConfig');
 
+// db.User.create({
+//   username: 'matt',
+//   password: 'bla',
+//   email: 'matt@aol.com'
+// })
+
+//example proposal. mess with this to add more
+db.Proposal.create({
+  title: 'we deserve free lunch on fridays',
+  description: 'otherwise im satisfied',
+  stage: 0,
+  watch: 0,
+  support: 0
+});
 
 // Error handling
 app.use(function (err, req, res, next) {
