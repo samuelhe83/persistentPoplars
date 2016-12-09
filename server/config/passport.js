@@ -28,17 +28,18 @@ module.exports = function(passport) {
         if (!user) {
           return done(null, false, { message: 'Username not found.' });
         }
-        if (!user.validPassword(password)) {
-          return done(null, false, { message: 'Incorrect password.' });
-        }
+        validPassword(username, password, function(bool) {
+          if (bool) {
+            return done(null, false, { message: 'Incorrect password.' });
+          }
+        });
+        
         return done(null, user);
       });
     }
   ));
 
 
-
-  //incomplete
   passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
@@ -51,9 +52,9 @@ module.exports = function(passport) {
           return done(null, false, { message: 'Username not available.' });
         } else {
           var randomName = '';
-          fs.readFile('../1syllableadjectives.txt', (err, data) => {
+          fs.readFile('../lib/1syllableadjectives.txt', (err, data) => {
             randomName += data[Math.random() * data.length];
-            fs.readFile('../1syllablenouns', (err, data) => {
+            fs.readFile('../lib/1syllablenouns', (err, data) => {
               randomName += data[Math.random() * data.length];
             });
           });
