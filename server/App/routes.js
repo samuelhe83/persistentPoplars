@@ -6,6 +6,11 @@ module.exports = function(app, express, passport) {
     failureFlash: true })
   );
 
+  app.post('logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+  });
+
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect: '/', 
     failureRedirect: '/signup', 
