@@ -8,8 +8,8 @@ class App extends React.Component {
     return (
       <div>
         <h1>Test</h1>
-
-        <ProposalList proposals={[]} />
+        <Navbar />
+        <ProposalList proposals={[{title:'Test', date: '2016-12-01', stage: 2, supporters: 10, watchers: 100}]} />
       </div>
     );
   }
