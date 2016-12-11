@@ -19,6 +19,6 @@ var Navbar = (props) => {
     </nav>
 
   );
-}
+};
 
 module.exports = Navbar;

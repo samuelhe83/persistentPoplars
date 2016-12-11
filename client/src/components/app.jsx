@@ -1,6 +1,6 @@
 import React from 'react';
-import ProposalList from './ProposalList.jsx'
-import Navbar from './NavBar.jsx'
+import ProposalList from './ProposalList.jsx';
+import Navbar from './NavBar.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class App extends React.Component {
       </div>
     );
   }
-};
+}
 
 
 
