@@ -1,6 +1,9 @@
 var LocalStrategy = require('passport-local').Strategy;
 var db = require('../db/dbConfig.js');
 var fs = require('fs');
+var Promise = require('bluebird');
+var bcrypt = require('bcryptjs');
+bcrypt.compare = Promise.promisify(bcrypt.compare);
 
 
 module.exports = function(passport) {
@@ -9,9 +12,9 @@ module.exports = function(passport) {
   });
 
   passport.deserializeUser(function(id, done) {
-    db.User.find({where: {id: id}}).success(function(user){
+    db.User.find({where: {id: id}}).then(function(user) {
       done(null, user);
-    }).error(function(err){
+    }).error(function(err) {
       done(err, null);
     });
   });
@@ -22,20 +25,28 @@ module.exports = function(passport) {
     passwordField: 'password',
     passReqToCallback: true
   },
-    function(email, password, done) {
-      db.User.findOne({ where: {email: email} }).then(function(err, user) {
-        if (err) { return done(err); }
-        if (!user) {
-          return done(null, false, { message: 'Username not found.' });
-        }
-        validPassword(username, password, function(bool) {
-          if (bool) {
-            return done(null, false, { message: 'Incorrect password.' });
+    function(req, email, password, done) {
+      console.log('EMAIL PASSWORD: ', email, password);
+      db.User.findOne({where: {email: email}})
+        .then(function(user) {
+          console.log('userSearch result', user);
+          if (!user) {
+            return done(null, false, { message: 'Username not found.' });
           }
+          console.log('passwords: ', user.password, password);
+          bcrypt.compare(password, user.password)
+          .then(function(match) {
+            console.log('match', match);
+            if (!match) {
+              return done(null, false, { message: 'Incorrect password.' });
+            } else {
+              return done(null, user);
+            }
+          });
+        })
+        .catch(function(err) {
+          return done(err);
         });
-        
-        return done(null, user);
-      });
     }
   ));
 
@@ -45,29 +56,38 @@ module.exports = function(passport) {
     passwordField: 'password',
     passReqToCallback: true
   },
-    function(email, password, done) {
-      db.User.findOne({ where: {email: email} }).then(function(err, user) {
-        if (err) { return done(err); }
-        if (user) {
-          return done(null, false, { message: 'Username not available.' });
-        } else {
-          var randomName = '';
-          fs.readFile('../lib/1syllableadjectives.txt', (err, data) => {
-            randomName += data[Math.random() * data.length];
-            fs.readFile('../lib/1syllablenouns', (err, data) => {
-              randomName += data[Math.random() * data.length];
+    function(req, email, password, done) {
+      console.log(email, password);
+      db.User.findOne({where: { email: email }})
+        .then(function(user) {
+          console.log('false?', user);
+          if (user) {
+            return done(null, false, { message: 'Username not available.' });
+          } else {
+            console.log('RANNNN');
+            var randomName = '';
+            fs.readFile(__dirname + '/../lib/1syllableadjectives.txt', (err, data) => {
+              var data = JSON.parse(data);
+              randomName += data[Math.floor(Math.random() * data.length)];
+              fs.readFile(__dirname + '/../lib/1syllablenouns.txt', (err, data) => {
+                var data = JSON.parse(data);
+                randomName += data[Math.floor(Math.random() * data.length)];
+                console.log('randomname:', randomName);
+                db.User.create({
+                  username: randomName,
+                  password: password,
+                  email: email
+                });
+              });
             });
-          });
-          db.User.create({
-            username: randomName,
-            password: password,
-            email: email
-          });
-        }
-      });
+          }
+        })
+        .catch(function(err) {
+          return done(err);
+        });
     })
-  )
-}
+  );
+};
 
 
 

@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = function(app, express, passport) {
 
   app.post('/login', passport.authenticate('local-login', { 
@@ -6,7 +8,7 @@ module.exports = function(app, express, passport) {
     failureFlash: true })
   );
 
-  app.post('logout', function(req, res) {
+  app.post('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
   });
@@ -17,14 +19,18 @@ module.exports = function(app, express, passport) {
     failureFlash: true })
   );
 
+<<<<<<< HEAD
+
+
+
 
 
 
   app.get('/proposals', function(req, res) {
-    db.Proposal.findAll().then(function(proposals){
+    db.Proposal.findAll().then(function(proposals) {
       console.log('proposals are: ', proposals);
       res.send(proposals);
-    })
+    });
   });
 /*
   app.get('/proposals/:id', function(req, res) {
@@ -36,19 +42,21 @@ module.exports = function(app, express, passport) {
       })
   });
 */
-  app.post('/proposal', function(req, res){
+  app.post('/proposal', function(req, res) {
     db.Proposal.create(req.body);
-  })
+  });
 
-}
+  app.get('*', function (req, res) {
+    res.sendFile(path.resolve(__dirname + '/../../client/index.html'));
+  });
 
-function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on 
-    if (req.isAuthenticated())
-        return next();
+};
 
-    // if they aren't redirect them to the home page
-    res.redirect('/login');
-
-}
+// function isLoggedIn(req, res, next) {
+//     // if user is authenticated in the session, carry on 
+//     if (req.isAuthenticated())
+//         return next();
+//     // if they aren't redirect them to the home page
+//     res.redirect('/login');
+// }

@@ -4,17 +4,22 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var passport = require('passport');
 var session = require('express-session');
+var flash = require('connect-flash');
+
 
 app.use(session({
   secret: 'secretkeyforthepoplartree',
   resave: false,
   saveUninitialized: false
 }));
+app.use(flash());
 
-
-// Need to sort out how morgan will work with heroku:
 app.use(morgan('dev'));
 app.use(bodyParser.json());
+
+
+
+
 
 
 app.use(passport.initialize());

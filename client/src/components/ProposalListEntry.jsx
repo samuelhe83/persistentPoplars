@@ -1,3 +1,6 @@
+import React from 'react';
+import moment from 'moment';
+
 var ProposalListEntry = (props) => {
 
   var timeType = (stage, date) => {
@@ -15,7 +18,7 @@ var ProposalListEntry = (props) => {
     if (stage === 0) {
       return 'Viability';
     } else if (stage === 1) {
-      return 'Exploratory'
+      return 'Exploratory';
     } else if (stage === 2) {
       return 'Company Engagement';
     } else if (stage === 3) {
@@ -33,4 +36,4 @@ var ProposalListEntry = (props) => {
   );
 };
 
-window.ProposalListEntry = ProposalListEntry;
+module.exports = ProposalListEntry;
