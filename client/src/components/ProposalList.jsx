@@ -1,6 +1,5 @@
 import React from 'react';
 import ProposalListEntry from './ProposalListEntry.jsx';
-import ProposalListEntry from './ProposalListEntry.jsx';
 
 var ProposalList = (props) => {
 

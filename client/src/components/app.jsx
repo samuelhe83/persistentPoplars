@@ -7,8 +7,6 @@ import Navbar from './NavBar.jsx';
 import NotFound from './NotFound.jsx';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
-import ProposalList from './ProposalList.jsx';
-import Navbar from './NavBar.jsx';
 
 
 class App extends React.Component {
