@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = function(app, express, passport) {
 
   app.post('/login', passport.authenticate('local-login', { 
@@ -41,6 +43,10 @@ module.exports = function(app, express, passport) {
 */
   app.post('/proposal', function(req, res) {
     db.Proposal.create(req.body);
+  });
+
+  app.get('*', function (req, res) {
+    res.sendFile(path.resolve(__dirname + '/../../client/index.html'));
   });
 
 

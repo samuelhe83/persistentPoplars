@@ -1,11 +1,12 @@
 import React from 'react';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import $ from 'jquery';
 
 import ProposalList from './ProposalList.jsx';
 import Navbar from './NavBar.jsx';
 import NotFound from './NotFound.jsx';
 import Login from './Login.jsx';
+import Signup from './Signup.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -27,12 +28,10 @@ class App extends React.Component {
   }
 
   loginAjax(email, password) {
-    console.log(email);
     $.ajax({
       url: '/login',
       method: 'POST',
       contentType: 'application/json',
-      // data: JSON.stringify({email: this.state.email, password: this.state.password}),
       data: JSON.stringify({email: email, password: password}),
       success: (data) => { console.log(data); }
     });
@@ -40,10 +39,11 @@ class App extends React.Component {
 
   render() {
     return (
-        <Router history={hashHistory}>
-          <Route path='/' component={NotFound} onEnter={this.requireAuth} />
-          <Route loginAjax={this.loginAjax} path='/login' component={Login} />
-          <Route path='*' component={NotFound} />
+        <Router history={browserHistory}>
+          <Route path='/' loginAjax={this.loginAjax} component={Login} />
+          <Route path='/signup' component={Signup} />
+          <Route path='/login' loginAjax={this.loginAjax} component={Login} />
+          <Route path="*" component={NotFound} />
         </Router>
     );
   }
