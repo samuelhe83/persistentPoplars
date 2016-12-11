@@ -3,7 +3,7 @@
 var Sequelize = require('sequelize');
 var bcrypt = require('bcryptjs');
 var Promise = require('bluebird');
-var sequelize = new Sequelize('persistentPoplar', 'root', ''); 
+var sequelize = new Sequelize('persistentPoplar', 'root', '');
 
 //Company table
 var Company = sequelize.define('company', {
@@ -23,17 +23,25 @@ var User = sequelize.define('user', {
   }
 }, {
   timestamps: true
-})
+});
 
-User.beforeCreate(function(user, options){
+User.beforeCreate(function(user, options) {
   var hash = Promise.promisify(bcrypt.hash);
   return hash(user.password, 10)
   .then(function(hashedPW) {
     user.password = hashedPW;
   })
   .catch(function(err) {
-  })
+  });
 });
+
+var validPassword = function(username, password) {
+  User.findOne({ where: { username: username} }).then(function(err, data) {
+    bcrypt.compare(password, data.password, function(err, res) {
+      return res;
+    })
+  })
+}
 
 /*
 User.beforeUpdate(function(userData, options){
@@ -53,7 +61,7 @@ var Proposal = sequelize.define('proposal', {
   support: Sequelize.INTEGER
 }, {
   timestamps: true
-})
+});
 
 Proposal.belongsTo(Company, {foreign_key: 'companyId'});
 Company.hasMany(Proposal, {foreign_key: 'companyId'});

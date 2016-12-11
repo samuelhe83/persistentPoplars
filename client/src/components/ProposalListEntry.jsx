@@ -4,20 +4,31 @@ var ProposalListEntry = (props) => {
     var expirationDate = moment(date).add(2, 'weeks');
 
 
-    if (stage === 'viability') {
+    if (stage === 0) {
       return 'Expires ' + moment(date).to(expirationDate);
     } else {
-      return moment(date).fromNow();
+      return 'Created ' + moment(date).fromNow();
     }
-  }
+  };
+
+  var stageConversion = (stage) => {
+    if (stage === 0) {
+      return 'Viability';
+    } else if (stage === 1) {
+      return 'Exploratory'
+    } else if (stage === 2) {
+      return 'Company Engagement';
+    } else if (stage === 3) {
+      return 'Post Company Engagement';
+    }
+  };
 
   return (
    <tr>
-     <th>{props.title}</th>
-     <th>{props.stage}</th>
-     <th>{timeType(props.stage, props.date)}</th>
-     <th>{props.supporters + '/' + props.watchers}</th>
-     <th><img src="somePicture" /></th>
+     <td>{props.title}</td>
+     <td>{stageConversion(props.stage)}</td>
+     <td>{timeType(props.stage, props.date)}</td>
+     <td>{props.supporters + '/' + props.watchers}</td>
    </tr>
   );
 };
