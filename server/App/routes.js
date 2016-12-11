@@ -11,4 +11,8 @@ module.exports = function(app, express, passport) {
     failureRedirect: '/signup', 
     failureFlash: true })
   );
+
+  app.get('*', function(req, res) {
+    res.sendFile(__dirname + '/../../client/index.html');
+  });
 }
