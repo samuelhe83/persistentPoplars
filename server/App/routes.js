@@ -6,7 +6,7 @@ module.exports = function(app, express, passport) {
     failureFlash: true })
   );
 
-  app.post('logout', function(req, res) {
+  app.post('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
   });
@@ -16,6 +16,8 @@ module.exports = function(app, express, passport) {
     failureRedirect: '/signup', 
     failureFlash: true })
   );
+
+
 
 
 
@@ -41,22 +43,13 @@ module.exports = function(app, express, passport) {
     db.Proposal.create(req.body);
   });
 
-  app.get('*', function(req, res) {
-    res.sendFile(__dirname + '/../../client/index.html');
-  });
 
 };
 
 // function isLoggedIn(req, res, next) {
-
 //     // if user is authenticated in the session, carry on 
 //     if (req.isAuthenticated())
 //         return next();
-
 //     // if they aren't redirect them to the home page
 //     res.redirect('/login');
-
-
-  
-
 // }

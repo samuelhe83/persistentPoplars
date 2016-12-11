@@ -79,7 +79,7 @@ var Proposal_User = sequelize.define('Proposal_User', {
 Proposal.belongsToMany(User, {through: Proposal_User});
 User.belongsToMany(Proposal, {through: Proposal_User});
 
-sequelize.sync({});
+sequelize.sync();
 
 module.exports = {
   sequelize: sequelize,

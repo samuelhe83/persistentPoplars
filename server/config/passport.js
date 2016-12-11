@@ -11,7 +11,7 @@ module.exports = function(passport) {
   passport.deserializeUser(function(id, done) {
     db.User.find({where: {id: id}}).success(function(user){
       done(null, user);
-    }).error(function(err){
+    }).error(function(err) {
       done(err, null);
     });
   });
@@ -22,7 +22,8 @@ module.exports = function(passport) {
     passwordField: 'password',
     passReqToCallback: true
   },
-    function(email, password, done) {
+    function(req, email, password, done) {
+      console.log('EMAIL PASSWORD: ', email, password);
       db.User.findOne({ where: {email: email} }).then(function(err, user) {
         if (err) { return done(err); }
         if (!user) {
@@ -45,7 +46,7 @@ module.exports = function(passport) {
     passwordField: 'password',
     passReqToCallback: true
   },
-    function(email, password, done) {
+    function(req, email, password, done) {
       db.User.findOne({ where: {email: email} }).then(function(err, user) {
         if (err) { return done(err); }
         if (user) {
