@@ -35,6 +35,14 @@ User.beforeCreate(function(user, options) {
   });
 });
 
+var validPassword = function(username, password) {
+  User.findOne({ where: { username: username} }).then(function(err, data) {
+    bcrypt.compare(password, data.password, function(err, res) {
+      return res;
+    })
+  })
+}
+
 /*
 User.beforeUpdate(function(userData, options){
   return hashPassword(userData, options);

@@ -1,5 +1,6 @@
 var LocalStrategy = require('passport-local').Strategy;
 var db = require('../db/dbConfig.js');
+var fs = require('fs');
 
 
 module.exports = function(passport) {
@@ -27,17 +28,18 @@ module.exports = function(passport) {
         if (!user) {
           return done(null, false, { message: 'Username not found.' });
         }
-        if (!user.validPassword(password)) {
-          return done(null, false, { message: 'Incorrect password.' });
-        }
+        validPassword(username, password, function(bool) {
+          if (bool) {
+            return done(null, false, { message: 'Incorrect password.' });
+          }
+        });
+        
         return done(null, user);
       });
     }
   ));
 
 
-
-  //incomplete
   passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
@@ -49,14 +51,33 @@ module.exports = function(passport) {
         if (user) {
           return done(null, false, { message: 'Username not available.' });
         } else {
-        //create username and password in database
+          var randomName = '';
+          fs.readFile('../lib/1syllableadjectives.txt', (err, data) => {
+            randomName += data[Math.random() * data.length];
+            fs.readFile('../lib/1syllablenouns', (err, data) => {
+              randomName += data[Math.random() * data.length];
+            });
+          });
           db.User.create({
-            username: username,
+            username: randomName,
             password: password,
             email: email
-          })
+          });
         }
       });
     })
-  );
+  )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
