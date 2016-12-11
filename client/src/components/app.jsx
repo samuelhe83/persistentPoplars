@@ -7,6 +7,9 @@ import Navbar from './NavBar.jsx';
 import NotFound from './NotFound.jsx';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
+import ProposalList from './ProposalList.jsx';
+import Navbar from './NavBar.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -20,6 +23,7 @@ class App extends React.Component {
       authenticated: false,
     };
   }
+
 
   requireAuth(nextState, replace) {
     if (!this.state.authenticated) {
@@ -37,6 +41,7 @@ class App extends React.Component {
     });
   }
 
+
   render() {
     return (
         <Router history={browserHistory}>
@@ -47,7 +52,7 @@ class App extends React.Component {
         </Router>
     );
   }
-}
+};
 
 
 
