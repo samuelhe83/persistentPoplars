@@ -1,3 +1,6 @@
+import React from 'react';
+import ProposalListEntry from './ProposalListEntry.jsx'
+
 var ProposalList = (props) => {
 
   return (
@@ -29,4 +32,4 @@ var ProposalList = (props) => {
 };
 
 
-window.ProposalList = ProposalList;
+module.exports = ProposalList;

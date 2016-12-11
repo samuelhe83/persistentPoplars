@@ -20,11 +20,12 @@ module.exports = function(app, express, passport) {
 
 
 
+
   app.get('/proposals', function(req, res) {
-    db.Proposal.findAll().then(function(proposals){
+    db.Proposal.findAll().then(function(proposals) {
       console.log('proposals are: ', proposals);
       res.send(proposals);
-    })
+    });
   });
 /*
   app.get('/proposals/:id', function(req, res) {
@@ -36,19 +37,26 @@ module.exports = function(app, express, passport) {
       })
   });
 */
-  app.post('/proposal', function(req, res){
+  app.post('/proposal', function(req, res) {
     db.Proposal.create(req.body);
-  })
+  });
 
-}
+  app.get('*', function(req, res) {
+    res.sendFile(__dirname + '/../../client/index.html');
+  });
 
-function isLoggedIn(req, res, next) {
+};
 
-    // if user is authenticated in the session, carry on 
-    if (req.isAuthenticated())
-        return next();
+// function isLoggedIn(req, res, next) {
 
-    // if they aren't redirect them to the home page
-    res.redirect('/login');
+//     // if user is authenticated in the session, carry on 
+//     if (req.isAuthenticated())
+//         return next();
 
-}
+//     // if they aren't redirect them to the home page
+//     res.redirect('/login');
+
+
+  
+
+// }

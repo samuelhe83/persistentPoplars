@@ -1,8 +1,11 @@
+import React from 'react';
+import ProposalList from './ProposalList.jsx'
+import Navbar from './NavBar.jsx'
+
 class App extends React.Component {
   constructor(props) {
     super(props);
   }
-
 
   render() {
     return (
@@ -13,11 +16,11 @@ class App extends React.Component {
       </div>
     );
   }
-}
+};
 
 
 
 
 
 
-window.App = App;
+module.exports = App;

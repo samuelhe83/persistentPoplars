@@ -1,4 +1,6 @@
- var Navbar = (props) => {
+import React from 'react';
+
+var Navbar = (props) => {
   return (
     <nav className="navbar navbar-default">
       <div className="navbar-header">
@@ -17,4 +19,6 @@
     </nav>
 
   );
- }
+}
+
+module.exports = Navbar;

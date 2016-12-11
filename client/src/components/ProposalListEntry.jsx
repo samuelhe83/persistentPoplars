@@ -1,3 +1,6 @@
+import React from 'react';
+import moment from 'moment';
+
 var ProposalListEntry = (props) => {
 
   var timeType = (stage, date) => {
@@ -33,4 +36,4 @@ var ProposalListEntry = (props) => {
   );
 };
 
-window.ProposalListEntry = ProposalListEntry;
+module.exports = ProposalListEntry;
