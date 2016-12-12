@@ -7,6 +7,7 @@ import Navbar from './NavBar.jsx';
 import NotFound from './NotFound.jsx';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
+import NewProposal from './NewProposal.jsx';
 
 
 class App extends React.Component {
@@ -46,6 +47,7 @@ class App extends React.Component {
           <Route path='/' loginAjax={this.loginAjax} component={Login} />
           <Route path='/signup' component={Signup} />
           <Route path='/login' loginAjax={this.loginAjax} component={Login} />
+          <Route path='/test' component={NewProposal} />
           <Route path="*" component={NotFound} />
         </Router>
     );

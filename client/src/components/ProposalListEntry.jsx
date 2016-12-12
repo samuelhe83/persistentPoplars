@@ -1,7 +1,9 @@
 import React from 'react';
 import moment from 'moment';
+import MenuItem from 'react-bootstrap';
 
 var ProposalListEntry = (props) => {
+  console.log(props);
 
   var timeType = (stage, date) => {
     var expirationDate = moment(date).add(2, 'weeks');
@@ -27,12 +29,12 @@ var ProposalListEntry = (props) => {
   };
 
   return (
-   <tr>
-     <td>{props.title}</td>
-     <td>{stageConversion(props.stage)}</td>
-     <td>{timeType(props.stage, props.date)}</td>
-     <td>{props.supporters + '/' + props.watchers}</td>
-   </tr>
+      <tr>
+       <td>{props.title}</td>
+       <td>{stageConversion(props.stage)}</td>
+       <td>{timeType(props.stage, props.date)}</td>
+       <td>{props.supporters + '/' + props.watchers}</td>
+     </tr>
   );
 };
 
