@@ -35,18 +35,24 @@ class NewProposal extends React.Component {
     });
   }
 
-  //HOW TO LINK COMPANY.
 
   render() {
     return (
       <div>
-        <form onSubmit={this.newProposalAjax}>
-          <input onChange={this.changeForm} name="title" type="text" placeholder="Title" /> <br/>
-          <textarea onChange={this.changeForm} name="description" type="text" placeholder="Description" id="description"></textarea><br/>
-          <button>Create New Proposal</button>
-        </form>
-      </div>
-    );
+       <form onSubmit={this.newProposalAjax}>
+         <div className="form-group">
+           <label for="title">Title</label>
+           <input onChange={this.changeForm} name="title" type="text" placeholder="Title" className="form-control"/> <br/>
+         </div>
+
+         <div className="form-group">
+           <label for="description">Description</label>
+           <input onChange={this.changeForm} name="description" type="text" placeholder="Description" className="form-control"></input><br/>
+         </div>
+         <button type="submit" className="btn btn-default">Create New Proposal</button>
+       </form>
+     </div>
+   );
   }
 }
 
