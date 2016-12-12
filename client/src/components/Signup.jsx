@@ -15,6 +15,7 @@ class Signup extends React.Component {
   }
 
   changeEmail(e) {
+    console.log(e.target);
     this.setState({email: e.target.value});
   }
   changePassword(e) {
@@ -37,7 +38,7 @@ class Signup extends React.Component {
       <div>
         <h1>Signup</h1>
         <form onSubmit={this.signupAjax}>
-          <input onChange={this.changeEmail} type="text" placeholder="Email" /><br/>
+          <input onChange={this.changeEmail} name="email" type="text" placeholder="Email" /><br/>
           <input onChange={this.changePassword} type="password" placeholder="Password" /><br/>
           <button>Create Account</button>
         </form>

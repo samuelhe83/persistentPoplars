@@ -1,10 +1,11 @@
 var path = require('path');
+var db = require('../db/dbConfig.js');
 
 module.exports = function(app, express, passport) {
 
-  app.post('/login', passport.authenticate('local-login', { 
-    successRedirect: '/', 
-    failureRedirect: '/login', 
+  app.post('/login', passport.authenticate('local-login', {
+    successRedirect: '/',
+    failureRedirect: '/login',
     failureFlash: true })
   );
 
@@ -14,8 +15,8 @@ module.exports = function(app, express, passport) {
   });
 
   app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/', 
-    failureRedirect: '/signup', 
+    successRedirect: '/',
+    failureRedirect: '/signup',
     failureFlash: true })
   );
 
@@ -34,14 +35,15 @@ module.exports = function(app, express, passport) {
 /*
   app.get('/proposals/:id', function(req, res) {
     var id = req.params.id;
-    db.Proposal.findOne({ 
+    db.Proposal.findOne({
         where: {
           id: id
         }
       })
   });
 */
-  app.post('/proposal', function(req, res) {
+  app.post('/proposals', function(req, res) {
+    console.log(req.body);
     db.Proposal.create(req.body);
   });
 
@@ -53,7 +55,7 @@ module.exports = function(app, express, passport) {
 };
 
 // function isLoggedIn(req, res, next) {
-//     // if user is authenticated in the session, carry on 
+//     // if user is authenticated in the session, carry on
 //     if (req.isAuthenticated())
 //         return next();
 //     // if they aren't redirect them to the home page

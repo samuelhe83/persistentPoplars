@@ -13,18 +13,20 @@ var ProposalList = (props) => {
           <th>Supporters/Watchers</th>
         </tr>
       </thead>
+
       <tbody>
         {props.proposals.map(proposal => {
           return (<ProposalListEntry
             title={proposal.title}
             date={proposal.date}
             stage={proposal.stage}
-            supporters={proposal.supporters}
-            watchers={proposal.watchers} />
+            supporters={proposal.support}
+            watchers={proposal.watch} />
           );
         })
       }
       </tbody>
+
     </table>
   );
 
