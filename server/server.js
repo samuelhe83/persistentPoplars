@@ -6,6 +6,7 @@ var passport = require('passport');
 var session = require('express-session');
 var flash = require('connect-flash');
 var db = require('./db/dbConfig');
+var path = require('path');
 
 
 app.use(session({
@@ -28,7 +29,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use(express.static(__dirname + '/../client'));
+app.use(express.static(path.join(__dirname, '/../client')));
 
 require('./config/passport.js')(passport);
 require('./app/routes.js')(app, express, passport);
