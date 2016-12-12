@@ -1,3 +1,4 @@
+import React from 'react';
 var Search = (props) => {
   return (
     <div className="input-group" id="search">
@@ -10,3 +11,5 @@ var Search = (props) => {
     </div>
   );
 }
+
+module.exports = Search;

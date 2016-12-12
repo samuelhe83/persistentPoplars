@@ -3,7 +3,6 @@ import moment from 'moment';
 import MenuItem from 'react-bootstrap';
 
 var ProposalListEntry = (props) => {
-  console.log(props);
 
   var timeType = (stage, date) => {
     var expirationDate = moment(date).add(2, 'weeks');

@@ -5,9 +5,10 @@ var Navbar = (props) => {
   return (
     <nav className="navbar navbar-default">
       <div className="navbar-header">
-        <a href="#" className="navbar-brand">Home</a>
-        <a href="#" className="navbar-brand">Proposals</a>
+        <a href="/home" className="navbar-brand">Home</a>
+        <a href="myproposals" className="navbar-brand">My Proposals</a>
         <a href="#" className="navbar-brand">About</a>
+        <a href="/newproposal" className="navbar-brand">Add New Proposal</a>
         <Search />
       </div>
     </nav>

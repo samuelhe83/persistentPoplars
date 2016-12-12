@@ -42,7 +42,7 @@ module.exports = function(app, express, passport) {
       })
   });
 */
-  app.post('/proposal', function(req, res) {
+  app.post('/proposals', function(req, res) {
     console.log(req.body);
     db.Proposal.create(req.body);
   });

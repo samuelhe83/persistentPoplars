@@ -1,7 +1,5 @@
 import React from 'react';
 import ProposalListEntry from './ProposalListEntry.jsx';
-import ButtonGroup from 'react-bootstrap';
-import DropdownButton from 'react-bootstrap';
 
 var ProposalList = (props) => {
 
@@ -15,6 +13,20 @@ var ProposalList = (props) => {
           <th>Supporters/Watchers</th>
         </tr>
       </thead>
+
+      <tbody>
+        {props.proposals.map(proposal => {
+          return (<ProposalListEntry
+            title={proposal.title}
+            date={proposal.date}
+            stage={proposal.stage}
+            supporters={proposal.support}
+            watchers={proposal.watch} />
+          );
+        })
+      }
+      </tbody>
+
     </table>
   );
 

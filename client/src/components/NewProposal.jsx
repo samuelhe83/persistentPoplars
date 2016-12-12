@@ -21,7 +21,7 @@ class NewProposal extends React.Component {
 
   newProposalAjax() {
     $.ajax({
-      url: '/proposal',
+      url: '/proposals',
       method: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({
