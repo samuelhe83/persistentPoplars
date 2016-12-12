@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import Search from './Search.jsx';
 
 var Navbar = (props) => {
@@ -8,7 +9,7 @@ var Navbar = (props) => {
         <a href="/home" className="navbar-brand">Home</a>
         <a href="myproposals" className="navbar-brand">My Proposals</a>
         <a href="#" className="navbar-brand">About</a>
-        <a href="/newproposal" className="navbar-brand">Add New Proposal</a>
+        <Link to="/newproposal" className="navbar-brand">Add New Proposal</Link>
         <Search />
       </div>
     </nav>
