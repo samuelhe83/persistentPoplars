@@ -3,11 +3,18 @@ var db = require('../db/dbConfig.js');
 
 module.exports = function(app, express, passport) {
 
-  app.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true })
-  );
+
+
+  app.post('/login', passport.authenticate('local-login'), function(req, res) {
+    res.json({authenticated: true});
+  });
+
+  // app.post('/login', passport.authenticate('local-signup', {
+  //   successRedirect: '/proposals', 
+  //   failureRedirect: '/signup', 
+  //   failureFlash: true })
+  // );
+
 
   app.post('/logout', function(req, res) {
     req.logout();
@@ -15,10 +22,11 @@ module.exports = function(app, express, passport) {
   });
 
   app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/',
-    failureRedirect: '/signup',
+    successRedirect: '/login', 
+    failureRedirect: '/signup', 
     failureFlash: true })
   );
+
 
 
 

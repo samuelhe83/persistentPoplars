@@ -1,6 +1,8 @@
 import React from 'react';
-import ProposalList from './ProposalList.jsx';
+import $ from 'jquery';
+
 import Navbar from './NavBar.jsx';
+import ProposalList from './ProposalList.jsx';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -12,15 +14,25 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     var callback = (data) => this.setState({proposals: data});
-    this.props.route.getProposalsAjax(callback);
+    this.getProposals(callback);
+  }
 
+  getProposals(cb) {
+    $.ajax({
+      url: '/proposals',
+      method: 'GET',
+      contentType: 'application/json',
+      success: (data) => {
+        cb(data);
+      }
+    });
   }
 
   render() {
     return (
       <div>
         <Navbar />
-        <ProposalList proposals={this.state.proposals} />
+        {this.props.children && React.cloneElement.call(this, this.props.children, {proposals: this.state.proposals})}
       </div>
     );
   }
